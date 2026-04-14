@@ -25,12 +25,12 @@ public class PlacaBase extends Componentes {
         if (memoriaRam instanceof GDDR) {
             return false;
         }
-        if(!numeroRams.isEmpty()) {
-            if(memoriaRam instanceof DDR && numeroRams.get(0) instanceof DDR) {
+        if (!numeroRams.isEmpty()) {
+            if (memoriaRam instanceof DDR && numeroRams.get(0) instanceof DDR) {
                 DDR nueva = (DDR) memoriaRam;
                 DDR existe = (DDR) numeroRams.get(0);
 
-                if(nueva.getTipo() != existe.getTipo()) {
+                if (nueva.getTipo() != existe.getTipo()) {
                     return false;
                 }
             }
@@ -51,20 +51,19 @@ public class PlacaBase extends Componentes {
         return true;
     }
 
-    public void inspecionarRAM(){
-        int ddr4 =0;
-        int ddr5 =0;
-        int gddr =0;
+    public void inspecionarRAM() {
+        int ddr4 = 0;
+        int ddr5 = 0;
+        int gddr = 0;
 
-        for(MemoriaRam memoriaRam : numeroRams){
-            if(memoriaRam instanceof GDDR) {
+        for (MemoriaRam memoriaRam : numeroRams) {
+            if (memoriaRam instanceof GDDR) {
                 gddr++;
-            } else if(memoriaRam instanceof DDR) {
+            } else if (memoriaRam instanceof DDR) {
                 DDR ddr = (DDR) memoriaRam;
-                if (ddr.getTipo()==TipoDDR.DDR4){
+                if (ddr.getTipo() == TipoDDR.DDR4) {
                     ddr4++;
-                }
-                else{
+                } else {
                     ddr5++;
                 }
             }
@@ -73,8 +72,6 @@ public class PlacaBase extends Componentes {
         System.out.println("DDR5: " + ddr5);
         System.out.println("GDDR: " + gddr);
     }
-
-
 
 
     public boolean isGaming() {

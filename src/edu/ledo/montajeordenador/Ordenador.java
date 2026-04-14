@@ -22,4 +22,26 @@ public class Ordenador {
         return caja.getTipoCaja()==placaBase.getTipoCaja();
     }
 
+    public boolean enceder(){
+        int consumoTotal = cpu.getConsumoEnergia() + refrigeracion.getConsumoEnergia();
+        for (Gpu gpu : placaBase.getGpus()){
+            consumoTotal += gpu.getConsumoEnergia();
+        }
+        for (MemoriaRam ram : placaBase.getNumeroRams()){
+            consumoTotal += ram.getConsumoEnergia();
+        }
+        return consumoTotal < cpu.getConsumoEnergia();
+    }
+
+    public double precioTotal(){
+        double precioTotal = cpu.getPrecio() + refrigeracion.getPrecio();
+        for (MemoriaRam ram : placaBase.getNumeroRams()){
+            precioTotal += ram.getPrecio();
+        }
+        for (Gpu gpu : placaBase.getGpus()){
+            precioTotal += gpu.getPrecio();
+        }
+        return precioTotal;
+    }
+
 }
