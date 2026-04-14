@@ -40,8 +40,42 @@ public class PlacaBase extends Componentes {
 
     }
 
+    public boolean comprobarGamingGpu(Gpu gpu) {
+        if (gaming && gpus.size() >= 2) {
+            return false;
+        }
+        if (!gaming && gpus.size() >= 1) {
+            return false;
+        }
+        gpus.add(gpu);
+        return true;
+    }
 
-    
+    public void inspecionarRAM(){
+        int ddr4 =0;
+        int ddr5 =0;
+        int gddr =0;
+
+        for(MemoriaRam memoriaRam : numeroRams){
+            if(memoriaRam instanceof GDDR) {
+                gddr++;
+            } else if(memoriaRam instanceof DDR) {
+                DDR ddr = (DDR) memoriaRam;
+                if (ddr.getTipo()==TipoDDR.DDR4){
+                    ddr4++;
+                }
+                else{
+                    ddr5++;
+                }
+            }
+        }
+        System.out.println("DDR4: " + ddr4);
+        System.out.println("DDR5: " + ddr5);
+        System.out.println("GDDR: " + gddr);
+    }
+
+
+
 
     public boolean isGaming() {
         return gaming;
